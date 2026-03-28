@@ -1,0 +1,197 @@
+# PromptBP
+
+**PromptBP** is a structured prompt architecture designed to improve output quality, control instruction drift, and produce more deterministic AI responses across different task types.
+
+This repository exists as a reference artifact for the PromptBP framework, including:
+- the core structure
+- operating principles
+- reusable templates
+- evaluation criteria
+- practical examples
+
+---
+
+## What PromptBP Is
+
+PromptBP is a prompt design system built around a fixed instruction schema:
+
+1. **Role**
+2. **Objective**
+3. **Inputs**
+4. **Output Format**
+5. **Performance Rules**
+6. **Style**
+7. **Recursive Check**
+
+Its purpose is to reduce ambiguity, improve execution fidelity, and create a reusable instruction control layer for AI workflows.
+
+---
+
+## Core PromptBP Structure
+
+```text
+ROLE:
+[define model function clearly]
+
+OBJECTIVE:
+[state the exact task to complete]
+
+INPUTS:
+[list all variables, context, source data, constraints]
+
+OUTPUT FORMAT:
+[define required structure, sections, schema, or formatting]
+
+PERFORMANCE RULES:
+[list hard rules, evaluation criteria, exclusions, quality thresholds]
+
+STYLE:
+[define tone, compression level, voice, domain posture]
+
+RECURSIVE CHECK:
+- verify objective completion
+- remove ambiguity
+- improve clarity
+- compress where possible
+- ensure output obeys rules
+```
+
+---
+
+## Repository Structure
+
+```text
+promptbp/
+├── README.md
+├── LICENSE
+├── CHANGELOG.md
+├── .gitignore
+├── docs/
+│   ├── framework.md
+│   ├── evaluation-layer.md
+│   ├── examples.md
+│   └── positioning.md
+├── prompts/
+│   ├── templates.md
+│   └── operator-prompts.md
+└── .github/
+    └── workflows/
+        └── markdown-check.yml
+```
+
+---
+
+## Why It Matters
+
+PromptBP is useful when the goal is not just “better prompts,” but **higher-control instruction execution**.
+
+It is especially relevant for:
+- AI operators
+- systems builders
+- prompt engineers
+- workflow designers
+- governance-oriented LLM applications
+- reusable productized prompt systems
+
+---
+
+## Design Goals
+
+- Improve determinism
+- Reduce instruction drift
+- Increase structural clarity
+- Standardize prompt quality
+- Support repeatable execution
+- Make prompts easier to audit, compare, and reuse
+
+---
+
+## Recommended Use Cases
+
+- content systems
+- operator workflows
+- task routing
+- reusable AI templates
+- productized prompt packs
+- internal instruction standards
+- governance-aware prompt design
+
+---
+
+## Quick Start
+
+1. Copy the PromptBP template from `prompts/templates.md`
+2. Fill each section with task-specific data
+3. Run the prompt
+4. Review output against `docs/evaluation-layer.md`
+5. Refine only the weakest section, not the entire prompt, unless failure is systemic
+
+---
+
+## Example
+
+```text
+ROLE:
+Elite content system builder
+
+OBJECTIVE:
+Convert raw AI output into a high-conversion content post
+
+INPUTS:
+- raw AI output
+- before/after transformation if applicable
+
+OUTPUT FORMAT:
+1. Hook
+2. Body
+3. Positioning line
+
+PERFORMANCE RULES:
+- no fluff
+- high clarity
+- distinct angle
+- reinforce authority or curiosity
+
+STYLE:
+minimal, sharp, controlled
+
+RECURSIVE CHECK:
+- is it skimmable?
+- is it distinct?
+- does it reinforce positioning?
+```
+
+---
+
+## Versioning Philosophy
+
+PromptBP should be treated like an instruction framework:
+- stable core schema
+- evolving examples
+- improved evaluation logic
+- expanding operator use cases
+
+Changes should document:
+- what changed
+- why it changed
+- what execution problem it solves
+
+See `CHANGELOG.md`.
+
+---
+
+## Suggested GitHub Repository Description
+
+> PromptBP is a structured prompt architecture for deterministic AI execution, instruction control, and reusable high-performance prompt systems.
+
+---
+
+## Suggested Topics
+
+`prompt-engineering`, `llm`, `ai-systems`, `prompt-framework`, `instruction-design`, `governance`, `ai-operations`, `prompt-templates`
+
+---
+
+## License
+
+This repo includes an MIT license by default. Replace it if you want stricter commercial control.

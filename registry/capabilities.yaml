@@ -1,0 +1,323 @@
+# PromptBP Capability Registry
+# Central catalog of available capabilities.
+# Used by the Workflow Composer to select and sequence capabilities.
+
+schema_version: "1.0.0"
+
+capabilities:
+
+  - name: intent_router
+    purpose: "Classify user intent and determine workflow type"
+    best_for:
+      - "Ambiguous or multi-part user requests"
+      - "First step in any workflow"
+      - "Intent disambiguation"
+    avoid_when:
+      - "Intent is already explicit and classified"
+      - "Single-capability direct execution"
+    required_inputs:
+      - "raw user input"
+    output_type: "intent classification + complexity + risk level"
+    average_score: 92
+    common_failure_modes:
+      - "Misclassifies complex intent as simple"
+      - "Fails to detect multi-objective requests"
+    compatible_workflows: ["all"]
+
+  - name: context_broker
+    purpose: "Assemble minimal sufficient context for downstream capabilities"
+    best_for:
+      - "Complex workflows needing selective context"
+      - "Preventing context bloat"
+      - "Multi-source context assembly"
+    avoid_when:
+      - "Context is already minimal and complete"
+      - "Single-input simple tasks"
+    required_inputs:
+      - "intent_type"
+      - "available context sources"
+    output_type: "curated context package"
+    average_score: 88
+    common_failure_modes:
+      - "Includes too much context (bloat)"
+      - "Excludes critical context (starvation)"
+    compatible_workflows: ["audit", "build", "research", "review", "strategy"]
+
+  - name: constraint_resolver
+    purpose: "Identify, validate, and resolve conflicting constraints"
+    best_for:
+      - "Multi-stakeholder requirements"
+      - "Trade-off analysis"
+      - "Detecting contradictions in inputs"
+    avoid_when:
+      - "Constraints are simple and non-conflicting"
+      - "No constraints provided"
+    required_inputs:
+      - "constraints from state object"
+      - "context"
+    output_type: "resolved constraint set + trade-off decisions"
+    average_score: 85
+    common_failure_modes:
+      - "Silently drops a constraint instead of flagging conflict"
+      - "Over-constrains the solution space"
+    compatible_workflows: ["build", "strategy", "review"]
+
+  - name: workflow_composer
+    purpose: "Assemble execution workflow from registry capabilities"
+    best_for:
+      - "Dynamic workflow construction"
+      - "Adapting execution to intent complexity"
+    avoid_when:
+      - "Workflow is predefined and static"
+    required_inputs:
+      - "intent_type"
+      - "complexity"
+      - "risk_level"
+      - "constraints"
+    output_type: "ordered capability sequence"
+    average_score: 90
+    common_failure_modes:
+      - "Over-engineers simple intents"
+      - "Under-specs high-risk workflows"
+    compatible_workflows: ["all"]
+
+  - name: reasoning_engine
+    purpose: "Perform structured analysis, logic, and inference"
+    best_for:
+      - "Complex analysis tasks"
+      - "Multi-step reasoning"
+      - "Decision evaluation"
+      - "Root cause analysis"
+    avoid_when:
+      - "Task is purely generative/creative"
+      - "Simple lookup or retrieval"
+    required_inputs:
+      - "objective"
+      - "context"
+      - "constraints"
+      - "evidence"
+    output_type: "analysis + conclusions + confidence levels"
+    average_score: 87
+    common_failure_modes:
+      - "Circular reasoning"
+      - "Unsupported conclusions"
+      - "Ignoring counter-evidence"
+    compatible_workflows: ["audit", "research", "review", "strategy"]
+
+  - name: builder_generator
+    purpose: "Produce artifacts: code, documents, plans, configurations"
+    best_for:
+      - "Creating new artifacts from specifications"
+      - "Transforming inputs into structured outputs"
+      - "Code generation"
+      - "Document drafting"
+    avoid_when:
+      - "Task is analysis-only"
+      - "No artifact is needed"
+    required_inputs:
+      - "objective"
+      - "output_format specification"
+      - "constraints"
+      - "context"
+    output_type: "generated artifact"
+    average_score: 84
+    common_failure_modes:
+      - "Generic output that doesn't match constraints"
+      - "Missing edge cases"
+      - "Style drift from specification"
+    compatible_workflows: ["build", "strategy"]
+
+  - name: research_retrieval
+    purpose: "Gather evidence, sources, and supporting data"
+    best_for:
+      - "Tasks requiring external knowledge"
+      - "Citation-needed outputs"
+      - "Fact-checking"
+      - "Competitive analysis"
+    avoid_when:
+      - "All required information is in context"
+      - "Task is purely creative"
+    required_inputs:
+      - "research questions"
+      - "scope boundaries"
+      - "source requirements"
+    output_type: "evidence set + sources + confidence ratings"
+    average_score: 82
+    common_failure_modes:
+      - "Hallucinated sources"
+      - "Confirmation bias in source selection"
+      - "Outdated information"
+    compatible_workflows: ["research", "audit", "strategy"]
+
+  - name: simulation_layer
+    purpose: "Model outcomes, scenarios, and what-if analysis"
+    best_for:
+      - "Risk assessment"
+      - "Strategy evaluation"
+      - "Predicting consequences of decisions"
+      - "A/B scenario comparison"
+    avoid_when:
+      - "No uncertainty to model"
+      - "Simple deterministic tasks"
+    required_inputs:
+      - "scenarios to evaluate"
+      - "variables and assumptions"
+      - "success criteria"
+    output_type: "scenario outcomes + probabilities + recommendations"
+    average_score: 79
+    common_failure_modes:
+      - "Overconfident predictions"
+      - "Missing key variables"
+      - "Anchoring on first scenario"
+    compatible_workflows: ["strategy", "audit", "build"]
+
+  - name: risk_scanner
+    purpose: "Identify risks, vulnerabilities, and failure modes"
+    best_for:
+      - "Pre-deployment review"
+      - "Architecture assessment"
+      - "Security review"
+      - "Strategy validation"
+    avoid_when:
+      - "Output is low-stakes and reversible"
+      - "Risk assessment already complete"
+    required_inputs:
+      - "artifact or plan to assess"
+      - "risk tolerance level"
+      - "known constraints"
+    output_type: "risk register + severity + mitigations"
+    average_score: 86
+    common_failure_modes:
+      - "Flag everything as high risk (noise)"
+      - "Miss subtle interaction risks"
+      - "No actionable mitigations"
+    compatible_workflows: ["audit", "build", "review", "strategy"]
+
+  - name: validation_engine
+    purpose: "Verify outputs against acceptance criteria and quality standards"
+    best_for:
+      - "Quality gates before delivery"
+      - "Schema conformance checks"
+      - "Requirement traceability"
+      - "Regression detection"
+    avoid_when:
+      - "No acceptance criteria defined"
+      - "Exploratory/draft work"
+    required_inputs:
+      - "artifact to validate"
+      - "acceptance criteria"
+      - "quality standards"
+    output_type: "pass/fail per criterion + details"
+    average_score: 91
+    common_failure_modes:
+      - "Passes weak outputs (false positive)"
+      - "Overly strict on style (false negative)"
+      - "Missing validation dimensions"
+    compatible_workflows: ["all"]
+
+  - name: compression_engine
+    purpose: "Reduce output verbosity while preserving information density"
+    best_for:
+      - "Verbose outputs that exceed token budgets"
+      - "Executive summaries from detailed analysis"
+      - "Token-efficient delivery"
+    avoid_when:
+      - "Output is already concise"
+      - "Detail is explicitly required"
+    required_inputs:
+      - "content to compress"
+      - "target length or ratio"
+      - "preservation priorities"
+    output_type: "compressed content + compression ratio"
+    average_score: 88
+    common_failure_modes:
+      - "Drops critical nuance"
+      - "Creates ambiguity through over-compression"
+      - "Loses structure"
+    compatible_workflows: ["all"]
+
+  - name: delivery_formatter
+    purpose: "Format final output for target medium and audience"
+    best_for:
+      - "Final output preparation"
+      - "Multi-format delivery"
+      - "Audience adaptation"
+    avoid_when:
+      - "Output format is already correct"
+      - "Internal/intermediate artifacts"
+    required_inputs:
+      - "content to format"
+      - "target format"
+      - "audience"
+      - "style vector"
+    output_type: "formatted deliverable"
+    average_score: 93
+    common_failure_modes:
+      - "Format doesn't match medium constraints"
+      - "Style drift from specified vector"
+    compatible_workflows: ["all"]
+
+  - name: scoring_engine
+    purpose: "Score outputs across standardized quality dimensions"
+    best_for:
+      - "Quality measurement"
+      - "Looper trigger decisions"
+      - "Version comparison"
+      - "Regression detection"
+    avoid_when:
+      - "Draft/exploratory work where scoring adds no value"
+    required_inputs:
+      - "artifact to score"
+      - "scoring criteria"
+      - "baseline scores (if available)"
+    output_type: "dimension scores + aggregate + pass/fail"
+    average_score: 90
+    common_failure_modes:
+      - "Inflated scores (grade inflation)"
+      - "Inconsistent scoring between runs"
+      - "Missing dimension coverage"
+    compatible_workflows: ["all"]
+
+  - name: looper
+    purpose: "Control recursive improvement of failed sections"
+    best_for:
+      - "Outputs that fail scoring thresholds"
+      - "Partial failures in multi-section outputs"
+      - "Iterative refinement within budget"
+    avoid_when:
+      - "All scores pass"
+      - "Retry budget exhausted"
+      - "Human approval required"
+    required_inputs:
+      - "scores"
+      - "failure details"
+      - "retry budget remaining"
+      - "improvement history"
+    output_type: "rerun instructions + targeted capability + stop decision"
+    average_score: 87
+    common_failure_modes:
+      - "Infinite loop (missing stop condition)"
+      - "Diminishing returns not detected"
+      - "Wrong capability selected for rerun"
+    compatible_workflows: ["all"]
+
+  - name: evaluation_store
+    purpose: "Record execution traces, scores, and lessons for reuse"
+    best_for:
+      - "Post-execution learning"
+      - "Pattern recognition across runs"
+      - "Failure mode cataloging"
+      - "Workflow optimization"
+    avoid_when:
+      - "Execution was trivial and adds no learning value"
+    required_inputs:
+      - "complete state object"
+      - "execution trace"
+      - "final scores"
+    output_type: "stored evaluation record + extracted lessons"
+    average_score: 95
+    common_failure_modes:
+      - "Stores noise (trivial executions)"
+      - "Lessons too specific to generalize"
+      - "Storage bloat without pruning"
+    compatible_workflows: ["all"]

@@ -1,0 +1,54 @@
+# Evaluation fixture for Content Builder prompt
+# Tests basic content transformation capability
+
+fixture:
+  name: "content-builder-001"
+  prompt_target: "content-builder"
+  description: "Basic LinkedIn post from raw AI output about productivity"
+
+  inputs:
+    raw_ai_output: |
+      AI can help with productivity by automating repetitive tasks,
+      summarizing documents, and generating first drafts. Many professionals
+      report saving 2-4 hours per day using AI tools effectively.
+    transformation_details: "Convert to authority-positioning LinkedIn post"
+    target_platform: "LinkedIn"
+
+  expected_output:
+    structure:
+      - contains_hook: true
+      - contains_body: true
+      - contains_positioning_line: true
+    constraints:
+      - max_words: 300
+      - no_generic_motivation: true
+      - no_fluff: true
+      - has_specific_angle: true
+
+  scoring:
+    rule_checks:
+      - name: "has_hook"
+        type: "structure"
+        check: "first_section_is_attention_grabbing"
+        weight: 2
+      - name: "word_count"
+        type: "length"
+        check: "total_words <= 300"
+        weight: 1
+      - name: "no_filler"
+        type: "forbidden_pattern"
+        patterns: ["in today's world", "it's important to", "at the end of the day"]
+        weight: 2
+      - name: "has_positioning"
+        type: "required_element"
+        check: "ends_with_authority_statement"
+        weight: 2
+
+    llm_judge:
+      enabled: true
+      dimensions:
+        - correctness
+        - completeness
+        - style
+        - utility
+        - specificity

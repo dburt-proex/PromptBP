@@ -1,0 +1,62 @@
+# Evaluation fixture for App Architect prompt
+# Tests system architecture design capability
+
+fixture:
+  name: "app-architect-001"
+  prompt_target: "app-architect"
+  description: "Design architecture for a task automation SaaS"
+
+  inputs:
+    business_model: "B2B SaaS, subscription-based, SMB market"
+    target_audience: "Operations managers at 10-50 person companies"
+    workflows_required:
+      - "task intake and classification"
+      - "automated assignment"
+      - "progress tracking"
+      - "notification dispatch"
+    tool_stack: "Next.js, PostgreSQL, Redis, OpenAI API"
+    data_dependencies:
+      - "user profiles"
+      - "task history"
+      - "team structure"
+
+  expected_output:
+    structure:
+      - has_system_overview: true
+      - has_architecture: true
+      - has_workflow_definitions: true
+      - has_risks: true
+      - has_next_build_steps: true
+    constraints:
+      - no_generic_advice: true
+      - surfaces_bottlenecks: true
+      - identifies_irreversible_risks: true
+      - dependencies_explicit: true
+
+  scoring:
+    rule_checks:
+      - name: "has_all_sections"
+        type: "structure"
+        check: "contains_five_required_sections"
+        weight: 3
+      - name: "no_generic"
+        type: "forbidden_pattern"
+        patterns: ["best practices suggest", "it depends", "consider using"]
+        weight: 2
+      - name: "has_risks"
+        type: "required_element"
+        check: "risk_section_has_specific_items"
+        weight: 2
+      - name: "is_buildable"
+        type: "quality"
+        check: "architecture_references_specific_tools"
+        weight: 2
+
+    llm_judge:
+      enabled: true
+      dimensions:
+        - correctness
+        - completeness
+        - style
+        - utility
+        - specificity

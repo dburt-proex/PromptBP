@@ -1,0 +1,54 @@
+# PromptBP Capability Contract Schema
+# Every capability in the mesh must expose this interface.
+# Ensures composability, testability, and predictable behavior.
+
+schema_version: "1.0.0"
+
+capability:
+  # --- Identity ---
+  name: ""                  # snake_case identifier
+  version: ""               # semver
+  purpose: ""               # one-line description of what this capability does
+
+  # --- Interface ---
+  input_schema:
+    required: []            # fields this capability needs from the state object
+    optional: []            # fields it can use if available
+
+  output_schema:
+    produces: []            # fields this capability writes to the state object
+    modifies: []            # existing fields it may update
+
+  # --- Dependencies ---
+  required_context: []      # what must exist in state before this runs
+  dependencies: []          # other capabilities that must run first
+  incompatible_with: []     # capabilities that conflict
+
+  # --- Operational Characteristics ---
+  cost_class: ""            # free | low | medium | high | variable
+  latency_class: ""         # instant | fast (<1s) | moderate (1-5s) | slow (>5s)
+  reliability_score: 0      # 0-100 historical success rate
+  idempotent: false         # safe to rerun without side effects
+
+  # --- Failure Behavior ---
+  failure_modes:
+    - mode: ""              # description of how it can fail
+      likelihood: ""        # rare | occasional | common
+      impact: ""            # low | medium | high | critical
+      recovery: ""          # what to do when this failure occurs
+
+  # --- Output Contract ---
+  produces:
+    confidence: 0           # 0-100 how confident in its output
+    risks: []               # risks introduced by this capability's output
+    assumptions: []         # assumptions this capability made
+    handoff:
+      next_capability: ""   # suggested next step
+      state_ready: false    # is state complete for next capability
+
+  # --- Governance ---
+  governance:
+    requires_human_approval: false  # must a human approve before proceeding
+    audit_trail: true               # should execution be logged
+    sensitive_data: false           # does it handle PII or secrets
+    max_retries: 2                  # max times looper can rerun this

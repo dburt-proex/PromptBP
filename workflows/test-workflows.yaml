@@ -1,0 +1,271 @@
+# Test Workflows
+
+## Purpose
+
+Reference workflows for testing the capability mesh end-to-end. Each workflow defines the intent, expected capability sequence, sample inputs, and acceptance criteria.
+
+---
+
+## Workflow 1: Prompt Audit
+
+**Intent**: Evaluate an existing prompt for quality and suggest improvements.
+
+```yaml
+workflow:
+  name: prompt_audit
+  intent_type: audit
+  complexity: medium
+  risk_level: low
+
+  sequence:
+    - intent_router
+    - context_broker
+    - reasoning_engine
+    - risk_scanner
+    - validation_engine
+    - compression_engine
+    - scoring_engine
+    - delivery_formatter
+
+  sample_input:
+    objective: "Audit the Content Builder prompt for quality gaps"
+    context:
+      prompt_to_audit: "schemas/prompt.sample.yaml"
+      evaluation_criteria: "PromptBP seven-layer framework"
+
+  acceptance_criteria:
+    - "Each of the 7 layers is evaluated independently"
+    - "Specific weaknesses are identified with evidence"
+    - "Improvement suggestions are actionable"
+    - "Overall pass/revise/reject verdict is provided"
+    - "Risk of deploying current version is assessed"
+
+  expected_scores:
+    correctness: ">= 75"
+    completeness: ">= 80"
+    utility: ">= 85"
+    risk: "<= 30"
+    token_efficiency: ">= 70"
+    confidence: ">= 80"
+```
+
+---
+
+## Workflow 2: Code Review
+
+**Intent**: Review a code change for bugs, risks, and improvement opportunities.
+
+```yaml
+workflow:
+  name: code_review
+  intent_type: review
+  complexity: high
+  risk_level: medium
+
+  sequence:
+    - intent_router
+    - context_broker
+    - constraint_resolver
+    - reasoning_engine
+    - risk_scanner
+    - validation_engine
+    - scoring_engine
+    - delivery_formatter
+
+  sample_input:
+    objective: "Review pull request for security issues and code quality"
+    context:
+      diff: "<code diff>"
+      language: "python"
+      standards: "PEP 8, OWASP Top 10"
+      architecture: "microservices, REST API"
+
+  acceptance_criteria:
+    - "Security vulnerabilities identified with severity"
+    - "Logic errors flagged with explanation"
+    - "Style issues noted but not over-weighted"
+    - "Positive patterns acknowledged"
+    - "Each finding has a specific fix suggestion"
+    - "Findings prioritized by impact"
+
+  expected_scores:
+    correctness: ">= 80"
+    completeness: ">= 75"
+    utility: ">= 85"
+    risk: "<= 40"
+    token_efficiency: ">= 60"
+    confidence: ">= 75"
+```
+
+---
+
+## Workflow 3: Research
+
+**Intent**: Investigate a topic and produce a structured evidence-based summary.
+
+```yaml
+workflow:
+  name: research_investigation
+  intent_type: research
+  complexity: high
+  risk_level: low
+
+  sequence:
+    - intent_router
+    - context_broker
+    - research_retrieval
+    - reasoning_engine
+    - compression_engine
+    - scoring_engine
+    - delivery_formatter
+
+  sample_input:
+    objective: "Research current state of LLM evaluation frameworks"
+    context:
+      scope: "Open-source frameworks released in 2025-2026"
+      depth: "Feature comparison, strengths, weaknesses"
+      output_need: "Decision support for choosing a framework"
+
+  acceptance_criteria:
+    - "Minimum 5 frameworks covered"
+    - "Each framework has: name, purpose, strengths, weaknesses, maturity"
+    - "Comparison table included"
+    - "Recommendation with rationale provided"
+    - "Sources cited for claims"
+    - "Limitations of research stated"
+
+  expected_scores:
+    correctness: ">= 70"
+    completeness: ">= 80"
+    utility: ">= 85"
+    risk: "<= 20"
+    token_efficiency: ">= 65"
+    confidence: ">= 65"
+```
+
+---
+
+## Workflow 4: System Build
+
+**Intent**: Design and generate a system component from specifications.
+
+```yaml
+workflow:
+  name: system_build
+  intent_type: build
+  complexity: high
+  risk_level: high
+
+  sequence:
+    - intent_router
+    - context_broker
+    - constraint_resolver
+    - research_retrieval
+    - builder_generator
+    - risk_scanner
+    - simulation_layer
+    - validation_engine
+    - scoring_engine
+    - delivery_formatter
+
+  sample_input:
+    objective: "Design a rate limiting middleware for the API gateway"
+    context:
+      tech_stack: "Node.js, Express, Redis"
+      requirements:
+        - "100 req/min per user"
+        - "Sliding window algorithm"
+        - "Graceful degradation"
+        - "Distributed across 3 instances"
+      constraints:
+        - "< 5ms latency overhead"
+        - "Must handle Redis failure gracefully"
+
+  acceptance_criteria:
+    - "Architecture diagram or description provided"
+    - "Implementation code is functional"
+    - "Edge cases documented"
+    - "Failure modes identified with fallbacks"
+    - "Performance characteristics stated"
+    - "Deployment notes included"
+
+  expected_scores:
+    correctness: ">= 80"
+    completeness: ">= 80"
+    utility: ">= 90"
+    risk: "<= 50"
+    token_efficiency: ">= 55"
+    confidence: ">= 75"
+```
+
+---
+
+## Workflow 5: Strategy
+
+**Intent**: Evaluate options and recommend a strategic direction.
+
+```yaml
+workflow:
+  name: strategy_evaluation
+  intent_type: strategy
+  complexity: critical
+  risk_level: high
+
+  sequence:
+    - intent_router
+    - context_broker
+    - constraint_resolver
+    - research_retrieval
+    - simulation_layer
+    - reasoning_engine
+    - risk_scanner
+    - validation_engine
+    - compression_engine
+    - scoring_engine
+    - delivery_formatter
+
+  sample_input:
+    objective: "Evaluate build vs buy for internal LLM evaluation platform"
+    context:
+      options:
+        - "Build custom evaluation framework"
+        - "Adopt open-source framework (LangSmith, Braintrust)"
+        - "Use provider-native evaluation (OpenAI Evals)"
+      constraints:
+        - "Budget: $50k first year"
+        - "Team: 2 engineers"
+        - "Timeline: production in 8 weeks"
+        - "Must support custom scoring rubrics"
+      priorities:
+        - "Speed to production"
+        - "Customizability"
+        - "Long-term maintainability"
+
+  acceptance_criteria:
+    - "All three options evaluated with pros/cons"
+    - "Evaluation uses stated priorities as criteria"
+    - "Recommendation is clear and justified"
+    - "Risk for each option identified"
+    - "Implementation roadmap for recommended option"
+    - "Decision is reversibility-aware"
+    - "Assumptions made are stated"
+
+  expected_scores:
+    correctness: ">= 75"
+    completeness: ">= 85"
+    utility: ">= 90"
+    risk: "<= 50"
+    token_efficiency: ">= 55"
+    confidence: ">= 70"
+```
+
+---
+
+## Running Test Workflows
+
+1. Initialize a state object from the sample input
+2. Run the workflow sequence capability by capability
+3. Score the final output
+4. Compare scores against expected thresholds
+5. Record results in the evaluation store
+6. Flag any workflow where actual scores deviate >15 points from expected

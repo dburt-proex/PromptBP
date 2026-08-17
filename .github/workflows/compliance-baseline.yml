@@ -1,0 +1,30 @@
+name: Compliance baseline
+
+on:
+  pull_request:
+    paths: ['COMPLIANCE.yaml','docs/COMPLIANCE-READINESS.md','.github/workflows/compliance-baseline.yml']
+  push:
+    branches: [main]
+    paths: ['COMPLIANCE.yaml','docs/COMPLIANCE-READINESS.md']
+
+permissions:
+  contents: read
+
+jobs:
+  validate-baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate compliance manifest contract
+        shell: python
+        run: |
+          from pathlib import Path
+          m = Path('COMPLIANCE.yaml'); r = Path('docs/COMPLIANCE-READINESS.md')
+          assert m.exists() and r.exists()
+          text = m.read_text(encoding='utf-8')
+          required = ['canonical_registry:','claim_boundary: no_certification_or_attestation_claim_without_independent_assurance','controls:','remediation:','external_assurance_gate:']
+          missing = [x for x in required if x not in text]
+          assert not missing, f'missing manifest fields: {missing}'
+          for control in ['GOV-001','RSK-001','IAM-001','CHG-001','LOG-001','EVD-001','SEC-001','INC-001','AI-001','DAT-001','SUP-001','BCM-001','REV-001']:
+              assert control in text, f'missing canonical control {control}'
+          print('compliance baseline contract: PASS')

@@ -1,81 +1,39 @@
-# PromptBP Evaluation Layer
+# Positioning
 
-Use this layer to audit whether a PromptBP prompt is strong before deployment.
+## Category
 
-## Pass / Revise / Reject
+PromptBP sits at the intersection of:
+- prompt engineering
+- instruction design
+- execution control
+- reusable AI operating systems
 
-### PASS
-The prompt:
-- has a clear role
-- defines one concrete objective
-- includes all necessary inputs
-- forces a usable output format
-- contains meaningful performance rules
-- uses an intentional style
-- includes a recursive review loop
+## Core Positioning Statement
 
-### REVISE
-The prompt works, but has weakness in one or more areas:
-- role is generic
-- objective is broad
-- inputs are incomplete
-- output format is too loose
-- rules are soft or redundant
-- style is vague
-- recursive check is shallow
+PromptBP is not a collection of random prompts.
+It is an instruction architecture for higher-control AI execution.
 
-### REJECT
-The prompt should be rebuilt if:
-- objective is unclear
-- output format is missing
-- rules contradict each other
-- inputs omit required context
-- style does not match the use case
-- the prompt relies on the model to guess too much
+## Differentiators
 
-## Audit Questions
+- fixed structural schema
+- reusable across domains
+- evaluation-aware by design
+- built for quality control
+- better suited to system builders than casual prompt users
 
-### Role
-- Does the role materially improve execution?
-- Is it specific enough to constrain behavior?
+## Ideal Audience
 
-### Objective
-- Can success be judged clearly?
-- Is the task singular and unambiguous?
+- AI operators
+- technical founders
+- prompt engineers
+- automation designers
+- governance-minded builders
+- digital product creators
 
-### Inputs
-- Are all required facts, materials, and constraints present?
-- Is missing context likely to cause failure?
+## GitHub Positioning
 
-### Output Format
-- Would two strong outputs look structurally similar?
-- Is the format directly usable?
-
-### Performance Rules
-- Are the rules enforceable?
-- Do they eliminate known weak-output patterns?
-
-### Style
-- Is the tone intentionally selected?
-- Does it match the audience and medium?
-
-### Recursive Check
-- Does it create a real quality loop?
-- Does it force revision pressure before final output?
-
-## Scoring Model
-
-Optional 1-5 scoring:
-
-- Role
-- Objective
-- Inputs
-- Output Format
-- Performance Rules
-- Style
-- Recursive Check
-
-Total score:
-- 30-35 = strong
-- 24-29 = usable but needs refinement
-- below 24 = weak prompt architecture
+Use this repository as:
+- a public credibility asset
+- a framework reference
+- a product proof point
+- a base for future prompt packs and operator systems

@@ -1,89 +1,109 @@
-# PromptBP Framework
+# PromptBP Examples
 
-## Definition
+## Example 1: Content Post Builder
 
-PromptBP is a structured prompting framework that turns vague prompting into a controlled instruction system.
+```text
+ROLE:
+Elite content system builder
 
-It is designed to improve:
-- execution fidelity
-- repeatability
-- clarity
-- evaluation
-- portability across tasks
+OBJECTIVE:
+Convert raw AI output into a high-conversion content post
 
-## The Seven Layers
+INPUTS:
+- raw AI output
+- transformation details
+- target platform: LinkedIn
 
-### 1. Role
-Defines what the model is acting as.
-Purpose:
-- constrain behavior
-- anchor domain posture
-- reduce generic response patterns
+OUTPUT FORMAT:
+1. Hook
+2. Body
+3. Positioning line
 
-### 2. Objective
-Defines the exact result required.
-Purpose:
-- eliminate open-ended drift
-- force task completion toward a measurable target
+PERFORMANCE RULES:
+- no fluff
+- high clarity
+- distinct angle
+- must create curiosity or authority
 
-### 3. Inputs
-Defines context, variables, source material, constraints, and dependencies.
-Purpose:
-- provide working memory
-- prevent missing-context failure
+STYLE:
+minimal, controlled, sharp
 
-### 4. Output Format
-Defines how the response must be structured.
-Purpose:
-- create predictable outputs
-- reduce reformatting overhead
-- improve downstream usability
+RECURSIVE CHECK:
+- is it skimmable?
+- is it distinct?
+- does it reinforce system positioning?
+```
 
-### 5. Performance Rules
-Defines non-negotiable quality conditions.
-Purpose:
-- prevent weak output modes
-- enforce standards
-- create sharper control over model behavior
+## Example 2: App Architect
 
-### 6. Style
-Defines tone, density, voice, and rhetorical posture.
-Purpose:
-- align output to use-case and audience
-- avoid mismatched delivery
+```text
+ROLE:
+App architect and automation specialist
 
-### 7. Recursive Check
-Defines a final self-review loop.
-Purpose:
-- improve quality before response
-- catch ambiguity
-- tighten execution
+OBJECTIVE:
+Design a system architecture for an autonomous AI workflow application
 
-## Core Principle
+INPUTS:
+- business model
+- target audience
+- workflows required
+- tool stack
+- data dependencies
 
-PromptBP works because it separates prompt construction into distinct control surfaces.
-Instead of hoping the model “gets it,” the prompt explicitly defines:
-- who it is
-- what it must do
-- what it has to work with
-- how it must respond
-- what quality bar it must clear
+OUTPUT FORMAT:
+1. System overview
+2. Architecture
+3. Workflow definitions
+4. Risks
+5. Next build steps
 
-## Failure Modes It Reduces
+PERFORMANCE RULES:
+- no generic advice
+- surface bottlenecks
+- prioritize execution leverage
+- identify irreversible risk points
 
-- vague objectives
-- under-specified inputs
-- inconsistent output structure
-- style drift
-- generic filler
-- weak final polish
-- poor reusability
+STYLE:
+technical, structured, concise
 
-## Best Practice
+RECURSIVE CHECK:
+- is the architecture buildable?
+- are dependencies explicit?
+- are risks exposed?
+```
 
-Do not rewrite the whole prompt every time.
-Refine the weakest layer first:
-- weak tone -> fix Style
-- bad structure -> fix Output Format
-- fuzzy result -> fix Objective
-- incomplete execution -> fix Performance Rules or Inputs
+## Example 3: Resume Rewrite
+
+```text
+ROLE:
+Senior recruiter and ATS resume strategist
+
+OBJECTIVE:
+Rewrite a resume to improve ATS performance and recruiter readability
+
+INPUTS:
+- current resume
+- target role
+- skills
+- experience history
+
+OUTPUT FORMAT:
+1. Professional summary
+2. Core skills
+3. Experience bullets
+4. ATS keyword additions
+
+PERFORMANCE RULES:
+- no fluff
+- quantify where possible
+- remove weak phrasing
+- align with job target
+
+STYLE:
+professional, direct, recruiter-ready
+
+RECURSIVE CHECK:
+- is it ATS-aligned?
+- does each bullet prove value?
+- is anything generic or empty?
+```

@@ -1,73 +1,59 @@
 # PromptBP
 
+PromptBP is a seven-layer prompt structure for making tasks, inputs, output shape, and review criteria explicit. This repository includes templates, a runnable structural YAML validator, illustrative fixtures, and a proposed capability architecture. It does not ship a model execution engine or an output-scoring harness.
+
+## Install and verify
+
+Requires Python 3.10+.
+
+```bash
+git clone https://github.com/dburt-proex/PromptBP.git
+cd PromptBP
+python -m pip install -e .
+python -m promptbp validate schemas/prompt.sample.yaml
+python -m promptbp demo
+```
+
+The commands report `VALID` for the included sample and `INVALID` when the demo removes its required objective. Validation checks document structure and nonempty fields; it does not score an LLM answer, enforce tool permissions, or establish output quality. The demo runs offline.
+
+The validator package is version `0.1.0`. The `1.0.0` label in the sample YAML versions that sample prompt; it does not indicate a shipped execution runtime.
+
+## Try it in minutes
+
+Copy the prompt into a language model. Compare its answer with the three checks below, then revise the weakest layer if a check fails.
+
+```text
+ROLE: Technical editor.
+OBJECTIVE: Turn the raw note into one actionable issue summary.
+INPUTS: Raw note: "The export button spins forever on an empty project. Tested in Chrome."
+OUTPUT FORMAT: Exactly three lines: Symptom, Reproduction, Unknown.
+PERFORMANCE RULES: Use only facts in the raw note. Do not invent a cause or claim a fix.
+STYLE: Plain, concise language.
+RECURSIVE CHECK: Before answering, confirm all three lines exist and each factual claim is grounded in the note.
+```
+
+Expected shape (wording may vary):
+
+```text
+Symptom: The export button spins indefinitely on an empty project in Chrome.
+Reproduction: Exact steps were not supplied; observed on an empty project in Chrome.
+Unknown: The cause and whether other browsers are affected are unknown.
+```
+
+Check: exactly three labeled lines; no invented cause or fix; uncertainty stated. This is a manual example, not a measured improvement or a deterministic model guarantee. For reusable fields, see [`schemas/prompt.sample.yaml`](schemas/prompt.sample.yaml) and [`framework.md`](framework.md).
+
+## Current scope
+
+The seven layers and sample schema are usable as documentation and prompt templates. The validator checks the documented YAML structure. The capability registry, composer, scoring engine, looper, and output evaluation runner are design artifacts; their described behavior has not been implemented or validated as an executable system in this repository. Treat `evaluations/runner.md` command examples as proposed interfaces. Prompt text does not grant tool permissions or enforce runtime policy; execution controls belong to the host or separate tools.
+
+## Repository guide
+
+- [`framework.md`](framework.md) — the seven layers and their purpose.
+- [`examples.md`](examples.md), [`templates.md`](templates.md) — examples and a copyable template.
+- [`schemas/prompt.schema.yaml`](schemas/prompt.schema.yaml), [`schemas/prompt.sample.yaml`](schemas/prompt.sample.yaml) — documented YAML structure and sample; `python -m promptbp validate` checks the seven required layers.
+- [`docs/evaluation-layer.md`](docs/evaluation-layer.md) — manual review rubric.
+- [`docs/architecture/capability-mesh-plan.md`](docs/architecture/capability-mesh-plan.md), [`registry/capabilities.yaml`](registry/capabilities.yaml), [`workflows/test-workflows.yaml`](workflows/test-workflows.yaml) — proposed capability model and sample workflows.
+- [`evaluations/`](evaluations/) — proposed runner interface and sample fixtures.
+- [`LICENSE`](LICENSE) — MIT reuse terms.
+
 **Portfolio evidence:** [Systems & proof](https://drew-burt-portfolio.daxxer-os.chatgpt.site/systems)
-
-Constrained, systematic prompting framework evolved into a capability-based execution architecture that produces controlled, high-fidelity responses from language models.
-
-## What is PromptBP?
-
-PromptBP is a governed execution operating system that routes intent, composes workflows from reusable capabilities, validates outputs with objective scoring, and loops weak sections back through the correct capability for bounded recursive optimization.
-
-## Contents
-
-### Core Framework
-- `examples.md` — Prompt examples using the 7-layer framework
-- `templates.md` — Reusable prompt templates (legacy format)
-- `operator-prompts.md` — Operator positioning and context
-- `framework.md` — The PromptBP 7-layer framework definition
-- `block-boundary-execution.md` — Block-based build execution protocol
-
-### Capability Mesh Architecture
-- `docs/architecture/capability-mesh-plan.md` — Full architecture plan and status
-- `docs/architecture/workflow-composer.md` — How workflows are composed from capabilities
-- `docs/architecture/scoring-engine.md` — Scoring dimensions and methods
-- `docs/architecture/looper-policy.md` — Bounded recursive improvement controller
-- `docs/architecture/usage-patterns-and-failure-policies.md` — Usage patterns and failure handling
-
-### Schemas
-- `schemas/prompt.schema.yaml` — Canonical prompt schema with versioning
-- `schemas/prompt.sample.yaml` — Validated sample prompt
-- `schemas/state-object.schema.yaml` — State object (single source of truth per workflow)
-- `schemas/capability-contract.schema.yaml` — Capability execution interface contract
-
-### Registry
-- `registry/capabilities.yaml` — Full capability catalog with fitness criteria
-
-### Templates
-- `templates/os-instruction-blocks.md` — OS-level instruction blocks for each capability
-
-### Workflows
-- `workflows/test-workflows.yaml` — Reference test workflows (audit, build, research, review, strategy)
-
-### Evaluation
-- `evaluations/runner.md` — Evaluation harness documentation
-- `evaluations/fixtures/` — Test fixtures for prompt regression testing
-
-### Operations
-- `docs/operations.md` — Timeouts, caching, batching, telemetry, safety hooks, rollout strategy
-- `docs/style-vectors.md` — Tone/voice calibration exemplars
-
-### Guidance
-- `positioning.md` — PromptBP positioning and audience
-- `upgrades.md` — Upgrade recommendations (executed)
-
-## Quick Start
-
-1. **Define intent** — What do you need? (audit, build, research, review, strategy)
-2. **Check the workflow composer** — See `docs/architecture/workflow-composer.md` for how capabilities are assembled
-3. **Use OS instruction blocks** — See `templates/os-instruction-blocks.md` for capability prompts
-4. **Score your output** — Apply the scoring dimensions from `docs/architecture/scoring-engine.md`
-5. **Loop if needed** — Let the Looper policy handle failed sections
-
-## Architecture Overview
-
-```
-User Intent → Intent Router → State Object → Workflow Composer → Capability Mesh → Scoring Engine → Looper → Final Output
-```
-
-Key principles:
-- **Capabilities over agents**: Reusable primitives, not personalities
-- **Scored execution**: Every output is objectively measured
-- **Bounded recursion**: The Looper improves weak sections without retry storms
-- **Token efficiency**: Context Broker prevents bloat; Compression Engine optimizes delivery
-- **Traceable**: Every assumption, decision, and risk is recorded in the state object

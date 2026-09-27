@@ -4,6 +4,8 @@
 
 Style vectors define the tone, density, and voice characteristics for prompt outputs. Use these exemplars to calibrate model behavior and reduce style drift across operators and use cases.
 
+All figures in the examples below are fictional illustrations. They are not PromptBP customer results, benchmarks, or independently verified claims.
+
 ---
 
 ## Vector 1: Technical Concise
@@ -75,7 +77,7 @@ Style vectors define the tone, density, and voice characteristics for prompt out
 - Close with clear next action
 
 **Strong example**:
-> 83% of AI implementations fail in the first year. Not because the models are wrong—because the prompts have no structure. PromptBP replaces guesswork with a 7-layer control system. Teams using it report 40% fewer revision cycles and 3× faster deployment. Start with the framework doc.
+> A prompt that omits the source facts and output format makes review harder. Start with the seven-layer template: state the task, name the inputs, define the output, and check the answer against those constraints.
 
 **Weak example**:
 > AI is really powerful and can do a lot of things. However, it's important to have good prompts. Our system helps you write better prompts that can improve your results. Many people have found it useful and it might help you too.

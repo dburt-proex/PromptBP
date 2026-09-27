@@ -1,14 +1,14 @@
 # PromptBP Capability Mesh Plan
 
-Status: **implemented** — architecture defined and documented as of 2026-07-02.
+Status: **documented design** — architecture defined in repository documents as of 2026-07-02. The execution mesh, scorer, looper, and evaluation store are not implemented here.
 
 ## Executive Decision
 
-PromptBP has evolved from a prompt framework into a capability-based execution architecture. It is built as a Capability Mesh with a Looper control circuit, scored state transitions, and reusable execution traces.
+PromptBP has a documented capability-based execution architecture. This document specifies a Capability Mesh, Looper control circuit, scored state transitions, and reusable execution traces as proposed components.
 
 ## Strategic Goal
 
-PromptBP is now a governed execution operating system capable of routing intent, composing workflows, validating outputs, looping weak sections back through the correct capability, and storing reusable lessons.
+The proposed PromptBP execution system would route intent, compose workflows, validate outputs, loop weak sections back through the correct capability, and store reusable lessons.
 
 ## Core Architecture
 
@@ -137,7 +137,7 @@ looper:
     rerun_failed_capability_only: true
 ```
 
-## Bottlenecks Prevented
+## Bottlenecks the design aims to prevent
 
 | Bottleneck | Prevention |
 |---|---|
@@ -148,15 +148,15 @@ looper:
 | Prompt drift | Inheritance: Kernel → Capability Rules → Task Context |
 | Agent sprawl | Capabilities as primitives, not personalities |
 
-## MVP Build Order (Completed)
+## MVP design artifacts (runtime implementation pending)
 
 - [x] Define State Object schema → `schemas/state-object.schema.yaml`
 - [x] Define Capability Contract schema → `schemas/capability-contract.schema.yaml`
 - [x] Create initial Capability Registry → `registry/capabilities.yaml`
-- [x] Implement Workflow Composer logic → `docs/architecture/workflow-composer.md`
-- [x] Add Scoring Engine → `docs/architecture/scoring-engine.md`
-- [x] Add Looper control policy → `docs/architecture/looper-policy.md`
-- [x] Add Evaluation Store → defined in registry and state schema
+- [x] Document Workflow Composer rules → `docs/architecture/workflow-composer.md`
+- [x] Specify Scoring Engine → `docs/architecture/scoring-engine.md`
+- [x] Specify Looper control policy → `docs/architecture/looper-policy.md`
+- [x] Describe Evaluation Store → defined in registry and state schema
 - [x] Create PromptBP OS instruction block templates → `templates/os-instruction-blocks.md`
 - [x] Create test workflows → `workflows/test-workflows.yaml`
 - [x] Document usage patterns and failure policies → `docs/architecture/usage-patterns-and-failure-policies.md`
@@ -179,15 +179,15 @@ looper:
 - looper
 - evaluation_store
 
-## Acceptance Criteria
+## Proposed runtime acceptance criteria (unverified)
 
-- ✅ A user intent can be converted into a structured State Object
-- ✅ A workflow can be composed from registry capabilities
-- ✅ Capabilities execute against a consistent contract
-- ✅ Output scored across correctness, completeness, utility, risk, token efficiency, and confidence
-- ✅ Failed sections loop back only to the relevant capability
-- ✅ Final output includes traceable assumptions, risks, decisions, and validation results
-- ✅ Architecture remains token-efficient and avoids unnecessary multi-agent chatter
+- [ ] A user intent can be converted into a structured State Object
+- [ ] A workflow can be composed from registry capabilities
+- [ ] Capabilities execute against a consistent contract
+- [ ] Output scored across correctness, completeness, utility, risk, token efficiency, and confidence
+- [ ] Failed sections loop back only to the relevant capability
+- [ ] Final output includes traceable assumptions, risks, decisions, and validation results
+- [ ] Architecture remains token-efficient and avoids unnecessary multi-agent chatter
 
 ## Repository Structure
 
@@ -224,4 +224,4 @@ docs/
 
 ## Conclusion
 
-PromptBP is now an auditable, scored, reusable execution mesh. The Looper is the control circuit that turns one-pass generation into bounded recursive optimization. The architecture is capability-first, governance-aware, and designed for token efficiency.
+This document proposes an auditable, scored execution mesh. The Looper design aims for bounded recursive optimization; implementation and empirical validation remain future work.

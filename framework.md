@@ -1,33 +1,89 @@
-# Changelog
+# PromptBP Framework
 
-## 1.0.0 - 2026-07-02
-- **MAJOR**: Evolved PromptBP from prompt framework to capability-based execution architecture
-- Executed all upgrades from upgrades.md:
-  - Added canonical prompt schema with versioning and provenance (schemas/prompt.schema.yaml)
-  - Added validated sample prompt (schemas/prompt.sample.yaml)
-  - Added evaluation harness with fixtures (evaluations/)
-  - Added operations documentation: timeouts, caching, batching, telemetry, safety hooks (docs/operations.md)
-  - Added style vectors with tone/voice exemplars (docs/style-vectors.md)
-- Implemented Capability Mesh Architecture:
-  - State Object schema (schemas/state-object.schema.yaml)
-  - Capability Contract schema (schemas/capability-contract.schema.yaml)
-  - Capability Registry with 15 capabilities (registry/capabilities.yaml)
-  - Workflow Composer with composition rules (docs/architecture/workflow-composer.md)
-  - Scoring Engine with 6 dimensions (docs/architecture/scoring-engine.md)
-  - Looper control policy with bounded recursion (docs/architecture/looper-policy.md)
-  - OS instruction block templates for all capabilities (templates/os-instruction-blocks.md)
-  - Test workflows: audit, build, research, code review, strategy (workflows/test-workflows.yaml)
-  - Usage patterns and failure policies (docs/architecture/usage-patterns-and-failure-policies.md)
-- Updated capability-mesh-plan.md to reflect completed implementation
-- Updated README with full repository guide
+## Definition
 
-## 0.1.1 - 2026-03-31
-- added upgrade recommendations for performance, effectiveness, and operational hardening
-- refreshed README to surface key docs
+PromptBP is a structured prompting framework that turns vague prompting into a controlled instruction system.
 
-## 0.1.0 - 2026-03-28
-- initial repository scaffold
-- added PromptBP framework documentation
-- added evaluation layer
-- added examples and reusable templates
-- added positioning notes
+It is designed to improve:
+- execution fidelity
+- repeatability
+- clarity
+- evaluation
+- portability across tasks
+
+## The Seven Layers
+
+### 1. Role
+Defines what the model is acting as.
+Purpose:
+- constrain behavior
+- anchor domain posture
+- reduce generic response patterns
+
+### 2. Objective
+Defines the exact result required.
+Purpose:
+- eliminate open-ended drift
+- force task completion toward a measurable target
+
+### 3. Inputs
+Defines context, variables, source material, constraints, and dependencies.
+Purpose:
+- provide working memory
+- prevent missing-context failure
+
+### 4. Output Format
+Defines how the response must be structured.
+Purpose:
+- create predictable outputs
+- reduce reformatting overhead
+- improve downstream usability
+
+### 5. Performance Rules
+Defines non-negotiable quality conditions.
+Purpose:
+- prevent weak output modes
+- enforce standards
+- create sharper control over model behavior
+
+### 6. Style
+Defines tone, density, voice, and rhetorical posture.
+Purpose:
+- align output to use-case and audience
+- avoid mismatched delivery
+
+### 7. Recursive Check
+Defines a final self-review loop.
+Purpose:
+- improve quality before response
+- catch ambiguity
+- tighten execution
+
+## Core Principle
+
+PromptBP works because it separates prompt construction into distinct control surfaces.
+Instead of hoping the model “gets it,” the prompt explicitly defines:
+- who it is
+- what it must do
+- what it has to work with
+- how it must respond
+- what quality bar it must clear
+
+## Failure Modes It Reduces
+
+- vague objectives
+- under-specified inputs
+- inconsistent output structure
+- style drift
+- generic filler
+- weak final polish
+- poor reusability
+
+## Best Practice
+
+Do not rewrite the whole prompt every time.
+Refine the weakest layer first:
+- weak tone -> fix Style
+- bad structure -> fix Output Format
+- fuzzy result -> fix Objective
+- incomplete execution -> fix Performance Rules or Inputs

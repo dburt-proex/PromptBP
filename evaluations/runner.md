@@ -2,9 +2,9 @@
 
 ## Purpose
 
-A lightweight harness that runs prompts against fixtures, scores them, and stores results alongside prompt versions to catch regressions.
+A proposed lightweight harness that would run prompts against fixtures, score them, and store results alongside prompt versions. No `promptbp-eval` executable is shipped in this repository; the commands below are interface sketches and will not run today.
 
-## Usage
+## Proposed usage (not executable)
 
 ```bash
 # Run all fixtures against a prompt
@@ -71,7 +71,7 @@ Results are stored as JSON:
 
 | Level | Score Range | Action |
 |-------|-------------|--------|
-| Pass | >= 80% | Deploy |
+| Pass | >= 80% | Review for possible use |
 | Revise | 60-79% | Fix weakest layer |
 | Reject | < 60% | Rebuild prompt |
 

@@ -9,6 +9,9 @@ Thumbs.db
 # Python
 __pycache__/
 *.pyc
+*.egg-info/
+build/
+dist/
 
 # Node
 node_modules/

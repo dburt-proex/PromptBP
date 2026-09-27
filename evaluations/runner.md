@@ -8,13 +8,13 @@ A proposed lightweight harness that would run prompts against fixtures, score th
 
 ```bash
 # Run all fixtures against a prompt
-promptbp-eval run --prompt prompts/content-builder.yaml --fixtures evaluations/fixtures/
+promptbp-eval run --prompt schemas/prompt.sample.yaml --fixtures evaluations/fixtures/
 
 # Run a single fixture
-promptbp-eval run --prompt prompts/content-builder.yaml --fixture evaluations/fixtures/content-builder-001.yaml
+promptbp-eval run --prompt schemas/prompt.sample.yaml --fixture evaluations/fixtures/content-builder-001.yaml
 
 # Compare across versions
-promptbp-eval diff --v1 1.0.0 --v2 1.1.0 --prompt prompts/content-builder.yaml
+promptbp-eval diff --v1 1.0.0 --v2 1.1.0 --prompt schemas/prompt.sample.yaml
 ```
 
 ## Scoring Methods

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Added an offline seven-layer YAML structural validator, negative control demo, tests, and CI.
 - Corrected top-level file mapping and restored the existing MIT license to `LICENSE`.
 - Clarified that the 1.0.0 capability architecture is a documented design, not a shipped runtime or measured evaluation harness.
 - Added a manual first-use example.

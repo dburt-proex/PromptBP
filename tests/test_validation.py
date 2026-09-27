@@ -1,12 +1,13 @@
 import copy
-import subprocess
-import sys
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 
 import yaml
 
 from promptbp.validation import validate_document, validate_file
+from promptbp.__main__ import main
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -39,16 +40,12 @@ class StructuralValidationTests(unittest.TestCase):
             self.assertTrue(validate_file(path))
 
     def test_demo_exits_successfully_and_shows_control(self):
-        result = subprocess.run(
-            [sys.executable, "-m", "promptbp", "demo"],
-            cwd=ROOT,
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        self.assertEqual(0, result.returncode, result.stderr)
-        self.assertIn("Sample: VALID", result.stdout)
-        self.assertIn("Missing objective: INVALID", result.stdout)
+        output = StringIO()
+        with redirect_stdout(output):
+            code = main(["demo"])
+        self.assertEqual(0, code)
+        self.assertIn("Sample: VALID", output.getvalue())
+        self.assertIn("Missing objective: INVALID", output.getvalue())
 
 
 if __name__ == "__main__":

@@ -1,5 +1,7 @@
 # PromptBP Operations
 
+Status: proposed operating guidance. This repository does not implement the telemetry, hooks, rollout controller, or deployment policies described here.
+
 ## Timeout and Retry Defaults
 
 ### Client-Side Timeouts

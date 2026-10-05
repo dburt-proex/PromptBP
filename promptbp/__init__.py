@@ -1,0 +1,1 @@
+"""PromptBP prompt structure validation."""

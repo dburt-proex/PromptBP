@@ -2,7 +2,7 @@
 
 PromptBP vNext is a governed intent-to-directive compiler and execution router. Its smallest spine is **Intent -> Route -> Directive -> Gate -> Receipt**, with a JSON-ready evolution ledger interface. It reuses the seven-layer prompt structure and its offline validator. Routes target Chat, Work, Codex, plugins, and automations through manual handoff; the executor retains tool permissions and runtime enforcement.
 
-This local review increment is based on `main` at `b10781ad2b2ca209a10ce78df3ada3b16791a640`, which includes the owner-merged [PR #7](https://github.com/dburt-proex/PromptBP/pull/7) repair. It is not deployed or published. The existing capability mesh and model-scoring proposals remain design assets.
+The vNext compiler was merged in [PR #8](https://github.com/dburt-proex/PromptBP/pull/8), following the baseline repair in [PR #7](https://github.com/dburt-proex/PromptBP/pull/7). This repository supplies an offline compiler and manual handoff; no live host integration or deployment is included. The existing capability mesh and model-scoring proposals remain design assets.
 
 ## Install and verify
 
@@ -18,6 +18,20 @@ python -m promptbp demo
 The commands report `VALID` for the included sample and `INVALID` when the demo removes its required objective. Validation checks document structure and nonempty fields; it does not score an LLM answer, enforce tool permissions, or establish output quality. The demo runs offline.
 
 The package remains version `0.1.0`; the new handoff contract is `vnext-0.1`. The `1.0.0` label in legacy YAML versions that sample prompt.
+
+## Run the vNext starter example
+
+From the repository root, after the existing install step, run the shipped inputs:
+
+```powershell
+python -m promptbp compile examples/vnext/intent.json --context examples/vnext/operator-context.json
+```
+
+The command prints a JSON envelope with the intent, Work route, read-only directive, `ALLOW` gate, and compilation receipt. Expected exit code: `0`. The receipt stays `execution_status: not_started`, with empty `evidence` and `checks`; compilation performs no repository inspection or network call.
+
+Both files are **illustrative only**. The operator context's authority reference and Work/GitHub availability are example declarations, not real approval or verified host capabilities. `ALLOW` applies to those declarations; it is not permission to execute the example. Before real work, copy the inputs outside the tracked examples and have the owner or trusted host supply actual authority, exact scope and verified availability. Recompile and honor REVIEW/HALT.
+
+This starter uses the minimal spine without the optional task-environment stage. It selects no model, enables no tools, and records no execution outcome. See the later sections for environment manifests and receipts after actual manual execution.
 
 ## Compile a governed directive
 

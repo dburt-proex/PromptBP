@@ -1,0 +1,13 @@
+{
+  "intent": "Inspect PromptBP and establish verified repository state.",
+  "action": "inspect",
+  "source": "github",
+  "target": "dburt-proex/PromptBP",
+  "surface": "auto",
+  "constraints": [
+    "Read only.",
+    "ILLUSTRATIVE ONLY: compile this example offline; it does not authorize an actual inspection."
+  ],
+  "evidence_required": ["repository head", "open PRs"],
+  "acceptance_criteria": ["head verified", "PRs verified"]
+}

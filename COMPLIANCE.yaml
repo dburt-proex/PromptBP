@@ -1,0 +1,65 @@
+version: '0.1'
+system: PromptBP
+repository: dburt-proex/PromptBP
+canonical_registry: dburt-proex/casa/governance/CONTROL-REGISTRY.yaml
+canonical_registry_version: '0.1'
+claim_boundary: no_certification_or_attestation_claim_without_independent_assurance
+assessment_date: '2026-08-16'
+states: [NOT_APPLICABLE, MISSING, PARTIAL, IMPLEMENTED, VERIFIED]
+controls:
+  GOV-001:
+    status: IMPLEMENTED
+    evidence: [framework.md, block-boundary-execution.md, registry/capabilities.yaml, schemas/capability-contract.schema.yaml]
+    note: Capability boundaries, explicit contracts and bounded execution are core design controls.
+  RSK-001:
+    status: PARTIAL
+    evidence: [docs/architecture/scoring-engine.md, docs/architecture/usage-patterns-and-failure-policies.md, docs/operations.md]
+    gap: Failure/risk policies exist; no canonical organizational risk register/treatment/residual-risk process.
+  IAM-001:
+    status: PARTIAL
+    evidence: [registry/capabilities.yaml, schemas/capability-contract.schema.yaml, block-boundary-execution.md]
+    gap: Capability authorization/approval concepts exist, but identity authentication and periodic access review are not a repository-native control.
+  CHG-001:
+    status: PARTIAL
+    evidence: [.github/workflows/diffwall.yml, CHANGELOG.md, evaluations]
+    gap: Change scanning/evaluations exist; canonical control-to-PR evidence receipt is not implemented.
+  LOG-001:
+    status: PARTIAL
+    evidence: [docs/operations.md, schemas/state-object.schema.yaml]
+    gap: Telemetry/compliance logging is specified; durable canonical decision-ledger implementation is external.
+  EVD-001:
+    status: PARTIAL
+    evidence: [evaluations, schemas, registry/capabilities.yaml]
+    gap: Regression/evaluation evidence exists, but canonical provenance/retention receipts are incomplete.
+  SEC-001:
+    status: PARTIAL
+    evidence: [docs/operations.md, docs/architecture/usage-patterns-and-failure-policies.md]
+    gap: Input/output safety hooks and failure policies are documented; formal threat model and independent security assessment are absent.
+  INC-001:
+    status: PARTIAL
+    evidence: [docs/operations.md]
+    gap: Rollback/investigation triggers exist, but full incident classification, containment, RCA, corrective-action and retest process is not formalized.
+  AI-001:
+    status: IMPLEMENTED
+    evidence: [schemas/prompt.schema.yaml, registry/capabilities.yaml, evaluations, docs/operations.md]
+    note: Prompt/capability versioning, evaluations, rollout/rollback and telemetry provide an AI-control lifecycle for PromptBP scope; organization-wide AI inventory remains external.
+  DAT-001:
+    status: PARTIAL
+    evidence: [docs/operations.md]
+    gap: PII scrub/output checks and caching rules exist; formal data classification, retention, deletion and exception policy is incomplete.
+  SUP-001:
+    status: PARTIAL
+    evidence: [docs/operations.md]
+    gap: Provider-specific operating limits are documented, but formal supplier/model-provider risk assessment and approved-use review are absent.
+  BCM-001:
+    status: PARTIAL
+    evidence: [docs/operations.md]
+    gap: Retry/circuit breaker/rollback controls exist; backup/restore/RTO/RPO and tested recovery evidence are absent.
+  REV-001:
+    status: PARTIAL
+    evidence: [evaluations, docs/operations.md]
+    gap: Regression review exists; recurring internal audit and management review are not formalized.
+remediation:
+  p0: [RSK-001, LOG-001, EVD-001, INC-001, DAT-001, SUP-001, BCM-001]
+  p1: [IAM-001, CHG-001, SEC-001, REV-001]
+  external_assurance_gate: blocked_until_p0_closed_or_formally_risk_accepted

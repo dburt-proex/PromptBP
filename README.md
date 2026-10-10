@@ -33,6 +33,14 @@ Both files are **illustrative only**. The operator context's authority reference
 
 This starter uses the minimal spine without the optional task-environment stage. It selects no model, enables no tools, and records no execution outcome. See the later sections for environment manifests and receipts after actual manual execution.
 
+## Use the local Codex review entry skill
+
+With this checkout available to Codex, ask: "Use the repository's `skills/promptbp-review/SKILL.md` to review dburt-proex/PromptBP read-only and return a receipt."
+
+The [review entry skill](skills/promptbp-review/SKILL.md) reuses [promptbp-environment](skills/promptbp-environment/SKILL.md) and the existing compiler. Codex collects actual authority and capability references, prepares a temporary packet outside the repository, checks its gate, performs permitted reads and binds the evidence to a receipt. Its preparation helper enables no tools and changes no settings. Missing inventory remains REVIEW; scope violations retain HALT.
+
+This is a repository-local skill asset with optional UI metadata, not a globally installed skill or registered command. Load it by its file path in this checkout. Natural-language interpretation and actual evidence collection remain Codex responsibilities; the compiler does not authenticate authority or independently verify execution evidence. Declared model/thinking and observed runtime settings are recorded separately.
+
 ## Compile a governed directive
 
 Create `intent.json` (requested work):

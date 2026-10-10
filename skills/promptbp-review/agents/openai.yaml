@@ -1,0 +1,4 @@
+interface:
+  display_name: "PromptBP Repository Review"
+  short_description: "Prepare a governed read-only repository review"
+  default_prompt: "Use $promptbp-review to review the specified repository read-only and return evidence with a bound receipt."

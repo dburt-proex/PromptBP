@@ -36,10 +36,32 @@
       "roundtrip": "passed"
     }
   ],
-  "python_tests": "not_run — execution environment unavailable",
-  "native_install": "not_run",
-  "behavioral_eval": "not_run",
-  "real_demo": "not_run",
+  "python_tests": "Review Pack: 54 passed on 2026-10-20. Environment Pack not independently rerun.",
+  "native_install": "Manual file-path skill load tested; native CLI installation not tested.",
+  "behavioral_eval": "Real missing-model fail-closed path verified; successful live review blocked; no independent cross-agent eval.",
+  "real_demo": "Actual blocked session captured; completed live review demo still pending.",
   "publication": "not_authorized",
-  "gate": "REVIEW"
+  "gate": "REVIEW",
+  "follow_up_review_pack_test": {
+    "date": "2026-10-20",
+    "archive_sha256": "ed3a1cb1b4f6ad0c16f581b574c4cdc1430094cb3b7803716b6311c26e2583bc",
+    "python": "3.12.14",
+    "pyyaml": "6.0.3",
+    "upstream_tests": {
+      "passed": 54,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "smoke_checks": "demo, sample validation, illustrative starter compilation all exit 0",
+    "manual_skill_load": "outer entry and bundled review/environment workflows read by file path",
+    "native_cli_install": "not tested; CLI unavailable",
+    "runtime_preservation": "22 before/after file hashes identical",
+    "live_preparation_exit_code": 2,
+    "live_gate": "REVIEW",
+    "live_gate_reason": "requested model/thinking is unavailable; no substitute or model switch",
+    "receipt_execution_status": "reported_blocked",
+    "completed_live_review": false,
+    "evidence": "evidence/2026-10-20-review-pack/REAL_DEMO.md",
+    "remaining": "Host-verified or owner-confirmed exact selected model and thinking level; successful real review and complete result demo; owner submission approval"
+  }
 }

@@ -1,0 +1,1 @@
+VALID: schemas/prompt.sample.yaml (structure only)

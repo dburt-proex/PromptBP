@@ -1,0 +1,10 @@
+{
+  "status": "blocked",
+  "reported_by": "Codex executor, actual owner-authorized session 2026-10-20",
+  "evidence": [
+    "live-preparation.stdout.txt",
+    "actual-operator-context.json",
+    "host-state.json"
+  ],
+  "checks": []
+}

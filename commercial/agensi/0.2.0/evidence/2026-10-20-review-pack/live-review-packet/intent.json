@@ -1,0 +1,25 @@
+{
+  "intent": "Review repository state, recent meaningful activity and evidence-backed blockers.",
+  "action": "inspect",
+  "source": "github",
+  "target": "dburt-proex/PromptBP",
+  "surface": "codex",
+  "task_class": "repository_review",
+  "constraints": [
+    "Read only. Keep repository files and external accounts unchanged.",
+    "Do not expand authority, enable tools or change host settings."
+  ],
+  "evidence_required": [
+    "timestamped repository state",
+    "recent activity evidence",
+    "blocker evidence or explicitly labeled uncertainty",
+    "before/after source state"
+  ],
+  "acceptance_criteria": [
+    "target verified",
+    "repository state captured",
+    "recent activity captured",
+    "facts and uncertainties separated",
+    "repository source preserved"
+  ]
+}

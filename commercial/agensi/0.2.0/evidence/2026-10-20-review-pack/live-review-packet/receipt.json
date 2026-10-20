@@ -1,0 +1,32 @@
+{
+  "receipt": {
+    "compilation_id": "35bff8da38e21ff93be032d7d90801392d482ccaf66097f810eca06231e1d11f",
+    "artifact_sha256": "35bff8da38e21ff93be032d7d90801392d482ccaf66097f810eca06231e1d11f",
+    "compiled": true,
+    "gate": "REVIEW",
+    "execution_status": "reported_blocked",
+    "evidence": [
+      "live-preparation.stdout.txt",
+      "actual-operator-context.json",
+      "host-state.json"
+    ],
+    "checks": [],
+    "evidence_verification": "not_verified_by_promptbp",
+    "reported_by": "Codex executor, actual owner-authorized session 2026-10-20"
+  },
+  "evolution_entry": {
+    "schema_version": "vnext-0.1",
+    "compilation_id": "35bff8da38e21ff93be032d7d90801392d482ccaf66097f810eca06231e1d11f",
+    "gate": "REVIEW",
+    "outcome": "reported_blocked",
+    "reported_by": "Codex executor, actual owner-authorized session 2026-10-20",
+    "evidence": [
+      "live-preparation.stdout.txt",
+      "actual-operator-context.json",
+      "host-state.json"
+    ],
+    "checks": [],
+    "lesson": null,
+    "evidence_verification": "not_verified_by_promptbp"
+  }
+}

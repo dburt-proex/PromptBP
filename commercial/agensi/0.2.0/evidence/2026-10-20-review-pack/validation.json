@@ -1,0 +1,62 @@
+{
+  "timestamp_utc": "2026-10-20T23:02:08.081843+00:00",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "check-1.stdout.txt",
+      "stderr": "check-1.stderr.txt"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "promptbp",
+        "demo"
+      ],
+      "exit_code": 0,
+      "stdout": "check-2.stdout.txt",
+      "stderr": "check-2.stderr.txt"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "promptbp",
+        "validate",
+        "schemas/prompt.sample.yaml"
+      ],
+      "exit_code": 0,
+      "stdout": "check-3.stdout.txt",
+      "stderr": "check-3.stderr.txt"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "promptbp",
+        "compile",
+        "examples/vnext/intent.json",
+        "--context",
+        "examples/vnext/operator-context.json"
+      ],
+      "exit_code": 0,
+      "stdout": "check-4.stdout.txt",
+      "stderr": "check-4.stderr.txt"
+    }
+  ],
+  "runtime_files_unchanged": true,
+  "runtime_file_count": 22
+}

@@ -39,3 +39,11 @@ MIT notices preserved. Source is also publicly available; paid value is packagin
 Agensi form requirements were read on 2026-10-20 at https://www.agensi.io/dashboard/submit: ZIP containing SKILL.md, under 50MB; name under 60 characters; listing, full real-session demo, compatibility, pricing and declared permissions. Its preview template was not treated as evidence of a passed security scan.
 
 No marketplace upload, listing submission, publication, spending or customer outreach occurred.
+
+## Follow-up execution test — 2026-10-20
+
+Review Pack extraction, manual file-path loading, 54 bundled tests, offline demo, sample validation and starter compilation passed in Python 3.12.14 / PyYAML 6.0.3. All 22 runtime file hashes stayed unchanged. Native CLI installation remains untested.
+
+The real repository-review attempt stopped correctly at REVIEW because this host does not expose its exact selected model/thinking settings. No model registry value was invented. A bound receipt records reported_blocked. The [actual full result](evidence/2026-10-20-review-pack/REAL_DEMO.md), [evaluation](evidence/2026-10-20-review-pack/EVALUATION.md), and raw logs are saved alongside this record. This is safety-path proof; it does not complete the successful live-review demo gate. These checks apply to the Review Pack archive, not an independent test of the Environment Pack.
+
+Archive bytes remain unchanged so the tested artifact remains identifiable. Its original embedded provenance accurately describes the earlier packaging session; this dated external evidence supersedes its not-run status for the checks executed here. Publication remains unapproved.

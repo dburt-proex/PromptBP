@@ -1,0 +1,4 @@
+Sample: VALID (structure only)
+Missing objective: INVALID
+Reason: prompt.objective: expected nonempty text
+No model call or tool execution occurred.

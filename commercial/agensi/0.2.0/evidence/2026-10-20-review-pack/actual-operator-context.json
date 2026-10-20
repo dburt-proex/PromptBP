@@ -1,0 +1,67 @@
+{
+  "authority": "read_only",
+  "authority_ref": "Owner request in this session, 2026-10-20: test the Review Pack end to end and capture its real demo. Bounded test target selected by executor: dburt-proex/PromptBP.",
+  "scope": [
+    "dburt-proex/PromptBP"
+  ],
+  "available_surfaces": [
+    "codex"
+  ],
+  "available_sources": [
+    "github"
+  ],
+  "prohibited_actions": [
+    "edit_local",
+    "external_write",
+    "publish",
+    "deploy",
+    "merge",
+    "send",
+    "spend"
+  ],
+  "capability_registry": [
+    {
+      "id": "github-connector-read",
+      "kind": "tool",
+      "provides": [
+        "repository_read"
+      ],
+      "surfaces": [
+        "codex"
+      ],
+      "task_classes": [
+        "repository_review"
+      ],
+      "ref": "Observed successful mcp__codex_apps__github_fetch_file and github_get_repo reads in this session"
+    },
+    {
+      "id": "review-task-context",
+      "kind": "context",
+      "provides": [
+        "repository_context",
+        "instruction_context"
+      ],
+      "surfaces": [
+        "codex"
+      ],
+      "task_classes": [
+        "repository_review"
+      ],
+      "ref": "Owner instruction; target identity confirmed; extracted outer SKILL and both bundled workflow entries read"
+    },
+    {
+      "id": "loaded-review-workflow",
+      "kind": "skill",
+      "provides": [
+        "repository_review"
+      ],
+      "surfaces": [
+        "codex"
+      ],
+      "task_classes": [
+        "repository_review"
+      ],
+      "ref": "Manually loaded extracted/promptbp-review/SKILL.md and runtime/skills/promptbp-review/SKILL.md; not globally installed"
+    }
+  ]
+}

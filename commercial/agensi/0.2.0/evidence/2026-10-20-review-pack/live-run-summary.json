@@ -1,0 +1,13 @@
+{
+  "preparation_exit_code": 2,
+  "receipt_exit_code": 0,
+  "gate": {
+    "status": "REVIEW",
+    "reasons": [
+      "requested model/thinking is unavailable; no substitute or model switch"
+    ],
+    "next_action": "resolve missing evidence or obtain owner review; do not dispatch"
+  },
+  "execution_status": "reported_blocked",
+  "compilation_id": "35bff8da38e21ff93be032d7d90801392d482ccaf66097f810eca06231e1d11f"
+}

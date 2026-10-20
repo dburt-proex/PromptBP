@@ -1,0 +1,1 @@
+{"gate": "REVIEW", "packet": "/workspace/scratch/279257752ddf/review-pack-test/evidence/live-review-packet", "reasons": ["requested model/thinking is unavailable; no substitute or model switch"], "dispatch": "manual_handoff_only", "execution_status": "not_started"}

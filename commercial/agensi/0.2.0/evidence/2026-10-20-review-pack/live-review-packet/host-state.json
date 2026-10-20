@@ -1,0 +1,22 @@
+{
+  "timestamp_utc": "2026-10-20T23:02:49.560067+00:00",
+  "requested_settings": {
+    "profile": "repository_review",
+    "default_requested_thinking": "high"
+  },
+  "observed_settings": {
+    "agent_identity": "Codex (developer-provided session identity)",
+    "exact_model_id": null,
+    "thinking_level": null,
+    "settings_basis": "Not exposed by session context or available model configuration metadata; no assumed registry model was added"
+  },
+  "tools_used": [
+    "exec_command local Python",
+    "github_fetch_file GET",
+    "github_get_repo GET"
+  ],
+  "configuration_changes_applied": [],
+  "workflow_loading": "Manual file-path load; no native CLI installed or global skill registration performed",
+  "gate": "REVIEW",
+  "substantive_repository_review_performed": false
+}

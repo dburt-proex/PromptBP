@@ -1,0 +1,85 @@
+# PromptBP State Object Schema
+# Single source of truth for every workflow execution.
+# Created, populated, and passed through the capability mesh.
+
+schema_version: "1.0.0"
+
+state:
+  # --- Identity ---
+  id: ""                    # unique execution ID (UUID)
+  created_at: ""            # ISO 8601 timestamp
+  updated_at: ""            # ISO 8601 timestamp
+
+  # --- Intent Classification ---
+  objective: ""             # what the user wants accomplished
+  intent_type: ""           # audit | build | research | review | strategy | custom
+  complexity: ""            # low | medium | high | critical
+  risk_level: ""            # low | medium | high | critical
+
+  # --- Context ---
+  context:
+    domain: ""              # subject area
+    background: ""          # relevant history or situation
+    prior_attempts: []      # what has been tried before
+    stakeholders: []        # who is affected
+
+  # --- Constraints ---
+  constraints:
+    hard: []                # non-negotiable limits
+    soft: []                # preferences that can flex
+    budget:
+      max_tokens: 0         # token budget for entire workflow
+      max_cycles: 3         # maximum looper iterations
+      max_latency_ms: 0     # time budget
+
+  # --- Working Memory ---
+  assumptions: []           # stated assumptions (must be explicit)
+  decisions: []             # decisions made during execution
+  evidence: []              # supporting data, sources, citations
+
+  # --- Artifacts ---
+  artifacts:
+    intermediate: []        # work products from capabilities
+    final: []               # deliverable outputs
+
+  # --- Risk Register ---
+  risks:
+    identified: []          # known risks
+    mitigations: []         # actions taken or recommended
+    accepted: []            # risks acknowledged and accepted
+
+  # --- Validation ---
+  validation:
+    checks_passed: []       # validation checks that passed
+    checks_failed: []       # validation checks that failed
+    warnings: []            # non-blocking concerns
+
+  # --- Scores ---
+  scores:
+    correctness: 0          # 0-100
+    completeness: 0         # 0-100
+    utility: 0              # 0-100
+    risk: 0                 # 0-100 (lower is better)
+    token_efficiency: 0     # 0-100
+    confidence: 0           # 0-100
+
+  # --- Execution Trace ---
+  trace:
+    workflow_used: ""       # name of composed workflow
+    capabilities_executed: []  # ordered list of capabilities run
+    loop_count: 0           # number of looper iterations
+    loop_history: []        # what was rerun and why
+    total_tokens_used: 0    # actual token consumption
+    total_latency_ms: 0     # actual execution time
+
+  # --- Next Actions ---
+  next_actions:
+    required: []            # must-do items
+    recommended: []         # should-do items
+    deferred: []            # parked for later
+
+  # --- Handoff ---
+  handoff:
+    status: ""              # complete | needs_review | failed | looping
+    summary: ""             # one-line description of outcome
+    for_human: ""           # what the human needs to do next (if anything)

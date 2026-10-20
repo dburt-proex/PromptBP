@@ -1,0 +1,55 @@
+# PromptBP Canonical Prompt Schema
+# Every prompt in the system must conform to this structure.
+# Required fields are marked; optional fields provide additional control.
+
+schema_version: "1.0.0"
+
+prompt:
+  # --- Metadata (versioning + provenance) ---
+  metadata:
+    version: ""          # semver, e.g. "1.0.0"
+    owner: ""            # person or team responsible
+    last_review_date: "" # ISO 8601, e.g. "2026-07-01"
+    model_target: ""     # e.g. "gpt-4", "claude-sonnet", "any"
+    tags: []             # categorization labels
+    status: ""           # draft | active | deprecated
+
+  # --- Layer 1: Role (required) ---
+  role:
+    description: ""      # what the model is acting as
+    domain: ""           # area of expertise
+    posture: ""          # e.g. "authoritative", "collaborative"
+
+  # --- Layer 2: Objective (required) ---
+  objective: ""          # single, measurable result expected
+
+  # --- Layer 3: Inputs (required) ---
+  inputs:
+    required: []         # list of required context items
+    optional: []         # list of optional context items
+    source_of_truth: ""  # grounding reference when available
+    constraints: []      # hard limits on inputs
+
+  # --- Layer 4: Output Format (required) ---
+  output_format:
+    structure: []        # ordered list of sections/fields
+    format_type: ""      # e.g. "markdown", "json", "yaml", "plain"
+    max_length: ""       # token or word limit guidance
+
+  # --- Layer 5: Performance Rules (required) ---
+  performance_rules: []  # non-negotiable quality conditions
+
+  # --- Layer 6: Style (required) ---
+  style:
+    tone: ""             # e.g. "technical", "conversational"
+    density: ""          # e.g. "concise", "detailed"
+    voice: ""            # e.g. "active", "passive"
+
+  # --- Layer 7: Recursive Check (required) ---
+  recursive_check: []    # self-review questions before final output
+
+  # --- Grounding (optional, from upgrades) ---
+  grounding:
+    citation_required: false
+    retrieval_sources: []
+    hallucination_check: false

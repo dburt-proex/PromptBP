@@ -1,0 +1,75 @@
+{
+  "status": "DRAFT — NOT APPROVED FOR SUBMISSION",
+  "version": "0.2.0",
+  "date": "2026-10-20",
+  "skill_name": "PromptBP Repository Review Pack",
+  "summary": "Turn a repository review into a scoped evidence packet and reported receipt.",
+  "full_description": "Review a repository with a defined scope, explicit authority and evidence requirements. This pack combines a Codex workflow, the required offline PromptBP compiler, the environment companion, packet-preparation helper, buyer setup instructions and upstream tests.\n\nGive your agent the target repository and a bounded review objective. It collects actual operator context, prepares a gated packet, performs permitted reads, and binds reported observations to the original compilation. Missing capabilities stay at REVIEW; prohibited scope stays at HALT.\n\nUseful for developers and technical operators who want a repeatable handoff and an auditable record of what their agent reports it checked. It does not fix code, deploy, grant tool permissions, configure models or independently verify evidence.\n\nSource code is MIT-licensed and publicly available. The proposed purchase is for the curated distribution and workflow convenience, not exclusive software rights. Release candidate: installation and complete execution must be verified before publication. No SLA, managed service, compliance certification or performance guarantee is included.",
+  "compatibility_note": "Designed around the existing Codex repository-review workflow. Requires local file access, Python execution and authorized GitHub reads or workspace reads. Native installation and other hosts are untested for this release candidate.",
+  "pricing": {
+    "model": "one-time",
+    "currency": "USD",
+    "proposed_amount": 15,
+    "owner_approved": false,
+    "reason": "Small initial experiment; no validated buyer-demand or conversion evidence."
+  },
+  "tags": [
+    "repository-review",
+    "codex",
+    "evidence",
+    "agent-workflows"
+  ],
+  "required_tools": [
+    "Python 3.10+",
+    "PyYAML >=6,<7",
+    "A skill-capable agent with local file and terminal access",
+    "Authorized GitHub read access or local repository read access"
+  ],
+  "permissions": {
+    "terminal": true,
+    "read_files": true,
+    "write_files": true,
+    "browser": false,
+    "network": "GitHub reads when selected; otherwise dependency setup only",
+    "environment_variables": false,
+    "file_scopes": [
+      "PACK_DIRECTORY/runtime/**",
+      "USER_APPROVED_INPUT_DIRECTORY/**",
+      "USER_APPROVED_NEW_EVIDENCE_DIRECTORY/**",
+      "EXACT_AUTHORIZED_TARGET_REPOSITORY (read only)"
+    ],
+    "notes": "File writes are limited to setup and user-approved evidence/output locations; no target edits or external account writes. Do not read credentials or reuse fixture authority."
+  },
+  "faq": [
+    {
+      "question": "Is the compiler included?",
+      "answer": "Yes. Both candidates bundle the required source files, schemas and companion workflows. Python and PyYAML are separate requirements."
+    },
+    {
+      "question": "Does ALLOW mean the task completed?",
+      "answer": "No. Compilation is a declared-context handoff. Execution and evidence collection happen separately."
+    },
+    {
+      "question": "Is this a security sandbox?",
+      "answer": "No. The host controls permissions and runtime enforcement. Reported receipts are not independent verification."
+    },
+    {
+      "question": "What is the licensing model?",
+      "answer": "MIT source is included with its original license. The paid packaging proposal does not restrict MIT rights."
+    }
+  ],
+  "demo": {
+    "status": "BLOCKED: actual installation and full session not run",
+    "request": "Use this pack to review OWNER/REPOSITORY read-only, using actual available tools and my authorization. Return the complete review, evidence checks and bound receipt. Stop on REVIEW or HALT.",
+    "result": null,
+    "required_capture": "Paste the full output of an actual run, including the deliverable and next steps. Do not submit synthetic expected output as a real demo."
+  },
+  "release_gate": [
+    "Run bundled Python tests",
+    "Perform actual skill install/load",
+    "Execute one full permitted real task",
+    "Capture full prompt and output for marketplace demo",
+    "Verify archive on Agensi",
+    "Owner approves exact listing, price and submission"
+  ]
+}

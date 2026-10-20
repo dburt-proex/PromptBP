@@ -1,0 +1,8 @@
+{
+  "authority": "read_only",
+  "authority_ref": "ILLUSTRATIVE ONLY: example authority and Work/GitHub availability declarations; replace with actual owner authorization and verified host inventory before real work.",
+  "scope": ["dburt-proex/PromptBP"],
+  "available_surfaces": ["work"],
+  "available_sources": ["github"],
+  "prohibited_actions": ["edit_local", "external_write", "publish", "deploy", "merge", "send", "spend"]
+}

@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-20",
+  "source_commit": "95f212b37b005db8b23bc0cf9109b27481565736",
+  "baseline": {
+    "result": "failed",
+    "check": "required runtime dependency closure",
+    "missing": [
+      "promptbp/__main__.py",
+      "promptbp/spine.py",
+      "promptbp/environment.py",
+      "promptbp/validation.py",
+      "schemas/prompt.sample.yaml",
+      "skills/promptbp-review/scripts/prepare_review.py",
+      "skills/promptbp-environment/SKILL.md"
+    ]
+  },
+  "packaging_checks": [
+    {
+      "slug": "promptbp-environment",
+      "dependency_closure": "passed",
+      "source_text_equality": "passed",
+      "path_safety": "passed",
+      "frontmatter": "passed",
+      "files": 27,
+      "bytes": 119148,
+      "roundtrip": "passed"
+    },
+    {
+      "slug": "promptbp-review",
+      "dependency_closure": "passed",
+      "source_text_equality": "passed",
+      "path_safety": "passed",
+      "frontmatter": "passed",
+      "files": 27,
+      "bytes": 118997,
+      "roundtrip": "passed"
+    }
+  ],
+  "python_tests": "not_run — execution environment unavailable",
+  "native_install": "not_run",
+  "behavioral_eval": "not_run",
+  "real_demo": "not_run",
+  "publication": "not_authorized",
+  "gate": "REVIEW"
+}

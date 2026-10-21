@@ -2,11 +2,26 @@
 
 ## Purpose
 
-The Looper is the control circuit that turns single-pass generation into bounded recursive optimization. It reruns only failed capabilities, respects budgets, and stops when improvement flattens.
+Status: design guidance. The offline reference state checker in
+`promptbp/mesh_state.py` tests ownership, freshness, and reported delivery gates;
+it does not implement automatic retries or this optimization policy.
+The 1.1 contract in `templates/os-instruction-blocks.md` takes precedence over
+legacy shared-state writes and delivery ordering in older mesh examples.
+
+The Looper is the control circuit that turns single-pass generation into bounded recursive optimization. It targets failed capabilities, refreshes their dependent results, respects budgets, and stops when improvement flattens.
 
 ## Core Rule
 
-The Looper never reruns the entire workflow. It identifies the weakest scored section, routes it back to the specific capability responsible, and validates the improvement.
+The Looper requests a targeted retry of the failing capability. On an accepted
+replacement the host atomically retires its old result and every transitive
+dependent. Recompute affected transforms and all affected risk, validation,
+scoring, and Looper results in dependency order before delivery. Preserve current,
+unaffected upstream work. Reject in-flight results carrying old input revisions.
+
+Compression and formatting must finish before checks of the final candidate.
+A formatting change after validation invalidates those checks. A stopped or
+exhausted loop with unmet gates is `needs_review`; it cannot proceed to delivery.
+A diagnostic draft with explicit blockers does not count as a completed handoff.
 
 ## Trigger Conditions
 
@@ -66,10 +81,10 @@ stop_conditions:
       - Previous output (for reference)
       - Failure reason
       - Specific improvement instruction
-   e. IF no → mark as "improvement exhausted" and proceed
-4. After rerun, re-score
+   e. IF no → mark needs_review and return a diagnostic draft with blockers
+4. After rerun, recompute affected dependents, including final-candidate checks and scores
 5. Evaluate stop conditions
-6. IF stop condition met → exit loop
+6. IF stop condition met → exit loop; deliver only if all current gates pass
 7. IF not → return to step 3 (up to max_cycles)
 ```
 
@@ -164,7 +179,7 @@ looper_config:
     token_efficiency: 50
     confidence: 60
   escalation:
-    on_budget_exhausted: "deliver_best_with_warnings"
+    on_budget_exhausted: "needs_review_with_diagnostic_draft"
     on_critical_failure: "halt_and_escalate"
-    on_trade_off_loop: "deliver_with_trade_off_note"
+    on_trade_off_loop: "needs_review_with_trade_off_note"
 ```

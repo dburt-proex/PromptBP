@@ -1,6 +1,10 @@
 # PromptBP State Object Schema
-# Single source of truth for every workflow execution.
-# Created, populated, and passed through the capability mesh.
+# Legacy 1.0 design layout; not a runtime-enforced schema.
+# For the 1.1 full-build ownership contract and result envelopes, see
+# templates/os-instruction-blocks.md and promptbp/mesh_state.py.
+# The fields below are host-owned compatibility projections only in 1.1:
+# capabilities return payloads to state.results.<capability>.output instead.
+# Do not compose 1.0 shared writes with the 1.1 single-writer contract.
 
 schema_version: "1.0.0"
 

@@ -182,6 +182,36 @@ Check: exactly three labeled lines; no invented cause or fix; uncertainty stated
 
 The seven layers and sample schema remain usable as documentation and prompt templates. The validator checks the documented YAML structure; the vNext compiler uses it to check generated directives. The capability registry, composer, scoring engine, looper, and output evaluation runner remain design artifacts. Treat `evaluations/runner.md` command examples as proposed interfaces. No model invocation, platform adapter, autonomous execution loop, schedule registration, or durable ledger is implemented. Gate logic controls readiness of this compiler's handoff artifact; runtime controls belong to the host or separate tools.
 
+## Offline mesh state checks
+
+The [instruction blocks](templates/os-instruction-blocks.md) now declare a
+single-writer ownership contract and a conservative full build dependency path.
+`promptbp.mesh_state` checks submitted payloads against that contract, binds
+results to input revisions, retires transitive dependents on replacement, and
+blocks readiness until current reported checks and scores pass. Hard conflicts
+latch review until a host-recorded operator resolution. Authority and acceptance
+criteria are separate host inputs. This is an offline checker, not a running mesh.
+
+```python
+from promptbp.mesh_state import MeshState, load_contract
+
+contract = load_contract("templates/os-instruction-blocks.md")
+run = MeshState(contract, authority={"mode": "read_only", "ref": "operator directive"},
+                acceptance_criteria=["Grounded summary"])
+# Host supplies declared dependency snapshots to each capability, then:
+# run.submit(capability_name, returned_payload, captured_input_revisions)
+# run.ready() remains false until every required result and gate is current.
+```
+
+Run `python -m unittest discover -s tests -p test_mesh_state.py -v` for changed
+artifacts, conflicting hard constraints, and malicious context write attempts,
+plus ownership/freshness edge cases. These tests use supplied output fixtures;
+they do not invoke a model or demonstrate semantic prompt-injection resistance.
+A host must authenticate submitters and operator resolutions, isolate the checker,
+and enforce permissions before any real tool use. The existing compiler is
+unchanged. Legacy composer workflows need explicit dependency contracts before
+using this reference checker; they are not silently migrated.
+
 ## Repository guide
 
 - [`framework.md`](framework.md) — the seven layers and their purpose.
